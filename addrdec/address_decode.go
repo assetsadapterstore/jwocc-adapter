@@ -1,7 +1,6 @@
 package addrdec
 
 import (
-	"github.com/blocktree/go-owaddress"
 	"github.com/blocktree/go-owcdrivers/addressEncoder"
 	"github.com/blocktree/go-owcrypt"
 	"github.com/blocktree/openwallet/v2/openwallet"
@@ -107,9 +106,10 @@ func (dec *AddressDecoderV2) AddressEncode(hash []byte, opts ...interface{}) (st
 
 // AddressVerify 地址校验
 func (dec *AddressDecoderV2) AddressVerify(address string, opts ...interface{}) bool {
-	valid, err := owaddress.Verify("jwocc", address)
+
+	_, err := dec.AddressDecode(address)
 	if err != nil {
 		return false
 	}
-	return valid
+	return true
 }
